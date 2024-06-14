@@ -33,6 +33,7 @@ public class SignupHandleController extends HttpServlet {
 				if(exist == null) {
 					User one = new User(id, password, name, gender, birth, email, String.join(",",interests));
 					result = userDao.save(one);
+					request.getSession().setAttribute("authUser", one);
 				}
 				
 			
