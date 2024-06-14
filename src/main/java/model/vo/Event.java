@@ -11,7 +11,7 @@ public class Event {
 	String hostId;
 	Date openDate;
 	int capacity;
-	int actual;
+	int attendee;
 	Date registerAt;
 	
 	
@@ -21,7 +21,7 @@ public class Event {
 
 
 	public Event(int id, String title, String description, String tag, int gymId, String hostId, Date openDate,
-			int capacity, int actual, Date registerAt) {
+			int capacity, int attendee, Date registerAt) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -31,7 +31,7 @@ public class Event {
 		this.hostId = hostId;
 		this.openDate = openDate;
 		this.capacity = capacity;
-		this.actual = actual;
+		this.attendee = attendee;
 		this.registerAt = registerAt;
 	}
 
@@ -116,13 +116,13 @@ public class Event {
 	}
 
 
-	public int getActual() {
-		return actual;
+	public int getAttendee() {
+		return attendee;
 	}
 
 
-	public void setActual(int actual) {
-		this.actual = actual;
+	public void setAttendee(int attendee) {
+		this.attendee = attendee;
 	}
 
 

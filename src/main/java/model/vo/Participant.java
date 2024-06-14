@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Participant {
 	int id;
 	String userId;
-	String eventId;
+	int eventId;
 	Date joinAt;
 	
 	
@@ -14,7 +14,7 @@ public class Participant {
 	}
 
 
-	public Participant(int id, String userId, String eventId, Date joinAt) {
+	public Participant(int id, String userId, int eventId, Date joinAt) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -43,12 +43,12 @@ public class Participant {
 	}
 
 
-	public String getEventId() {
+	public int getEventId() {
 		return eventId;
 	}
 
 
-	public void setEventId(String eventId) {
+	public void setEventId(int eventId) {
 		this.eventId = eventId;
 	}
 
