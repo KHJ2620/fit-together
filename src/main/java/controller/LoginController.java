@@ -12,7 +12,13 @@ import jakarta.servlet.http.HttpServletResponse;
 public class LoginController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String signupSuccess = request.getParameter("signupSuccess");
+        String id = request.getParameter("id");
+
+        if (signupSuccess != null && signupSuccess.equals("true")) {
+            request.setAttribute("signupSuccess", true);
+            request.setAttribute("id", id);
+        }
 		
 		
 		

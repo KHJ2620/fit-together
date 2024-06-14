@@ -26,13 +26,21 @@
 		</div>
 		<div class="wrap-x-sm">
 			<h2 class="text-center">핏투게더 즐기기</h2>
+			<c:choose>
+                <c:when test="${signupSuccess}">
+                    <div class="p-5 border-rounded my-3"
+                    style="background-color: lightblue; color: white">
+                        가입을 축하합니다! 아이디: ${id}
+                    </div>
+                </c:when>
+            </c:choose>
 			
 			<form class="border-rounded  p-5" action="${pageContext.servletContext.contextPath }/login-handle"
 			method="post">
 				<div>
 					<label class="fs-3">계정아이디<span class="warning">(*)</span></label>
 					<div class="my-1">
-						<input type="text" name="id" placeholder="아이디.." class="w-100 p-1 fs-4 border-rounded" />
+						<input type="text" name="id" placeholder="아이디.." value="${id}" class="w-100 p-1 fs-4 border-rounded" />
 					</div>
 				</div>
 				<div>
