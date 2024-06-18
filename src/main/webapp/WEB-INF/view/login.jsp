@@ -19,6 +19,9 @@
 </head>
 <body>
 	<div class="container">
+		<div class="my-2">
+			<%@ include file="/WEB-INF/view/common/navbar.jsp" %>
+		</div>
 		<div class="wrap-sm text-center my-5 p-5">
 			<a href="${pageContext.servletContext.contextPath }/index">
 				<img src="${pageContext.servletContext.contextPath }/image/main.png" width="64"/>
@@ -26,13 +29,20 @@
 		</div>
 		<div class="wrap-x-sm">
 			<h2 class="text-center">핏투게더 즐기기</h2>
+			<c:if test="${ param.authUser != null }">
+				<div class="p-5 border-rounded my-3" 
+				style="background-color: lightblue; color: white">
+					환영합니다! 로그인해주세요
+				
+				</div>
+			</c:if>
 			
 			<form class="border-rounded  p-5" action="${pageContext.servletContext.contextPath }/login-handle"
 			method="post">
 				<div>
 					<label class="fs-3">계정아이디<span class="warning">(*)</span></label>
 					<div class="my-1">
-						<input type="text" name="id" placeholder="아이디.." class="w-100 p-1 fs-4 border-rounded" />
+						<input type="text" name="id" value="${sessionScope.authUser.id }" placeholder="아이디.." class="w-100 p-1 fs-4 border-rounded" />
 					</div>
 				</div>
 				<div>

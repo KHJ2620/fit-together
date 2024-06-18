@@ -22,7 +22,6 @@ public class SignupHandleController extends HttpServlet {
 			int birth = Integer.parseInt(request.getParameter("birth"));
 			String gender = request.getParameter("gender");
 			String[] interests = request.getParameterValues("interest");
-			
 			if(interests == null) {
 				interests = new String[0];
 			}
@@ -30,20 +29,22 @@ public class SignupHandleController extends HttpServlet {
 			UserDao userDao = new UserDao();
 			boolean result = false;
 				User exist = userDao.findById(id);
+				
 				if(exist == null) {
 					User one = new User(id, password, name, gender, birth, email, String.join(",",interests));
 					result = userDao.save(one);
+					request.getSession().setAttribute("authUser", one);
 				}
 				
 			
 			
 			if(result) {
-				response.sendRedirect(request.getContextPath()+"/index");
+				response.sendRedirect(request.getContextPath()+"/login");
 			}else {
 				response.sendRedirect(request.getContextPath()+"/signup?error");
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		
 	}

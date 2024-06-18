@@ -19,6 +19,9 @@
 </head>
 <body>
 	<div class="container">
+		<div class="my-2">
+			<%@ include file="/WEB-INF/view/common/navbar.jsp" %>
+		</div>
 		<div>
 			<h1 class="text-center">핏투게더</h1>
 		</div>

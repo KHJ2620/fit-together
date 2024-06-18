@@ -18,6 +18,11 @@
 	href="${pageContext.servletContext.contextPath }/css/style.css?<%=System.currentTimeMillis() %>" />
 </head>
 <body>
+	<div class="my-2">
+			<%@ include file="/WEB-INF/view/common/navbar.jsp" %>
+		</div>
+<a href="${pageContext.servletContext.contextPath }/events/design">체육 행사 만들기</a>
+<a href="${pageContext.servletContext.contextPath }/events">체육 행사 리스트</a>
 	<div class="container px-1">
 		<div>
 			<h1 class="text-center">핏투게더</h1>

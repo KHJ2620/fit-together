@@ -10,31 +10,28 @@ import model.vo.Gym;
 import oracle.jdbc.datasource.impl.OracleDataSource;
 
 public class GymDao {
-	public Gym distinctByType() throws Exception {
+	public List<String> findDistinctType() throws Exception {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//3.34.136.108:1521/xe");
 		ods.setUser("fit_together");
 		ods.setPassword("ORACLE");
-		try (Connection conn = ods.getConnection()){
-			
-			//식별키로 조회하고,
+		try (Connection conn = ods.getConnection()) {
+
 			PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT TYPE FROM GYMS");
-			
-			
+
 			ResultSet rs = stmt.executeQuery();
-			
-			
-			if(rs.next()) {
-				return new Gym(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5), rs.getString(6));
-				
-			} else {
-				return null;
+			List<String> types = new ArrayList<>();
+			while (rs.next()) {
+				String type = rs.getString("type");
+				types.add(type);
 			}
-			
+
+			return types;
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return null;
 		}
+	
 		
 	}
 	
@@ -66,7 +63,7 @@ public class GymDao {
 		}
 	}
 		
-	public List<Gym> findById(int gymId) throws Exception {
+	public Gym findById(int gymId) throws Exception {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//3.34.136.108:1521/xe");
 		ods.setUser("fit_together");
@@ -79,13 +76,14 @@ public class GymDao {
 			stmt.setInt(1, gymId);
 			
 			ResultSet rs = stmt.executeQuery();
-			List<Gym> gyms = new ArrayList<>();
 			
-			while(rs.next()) {
-				Gym one = new Gym(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5), rs.getString(6));
-				gyms.add(one);
+			
+			if (rs.next()) {
+				return new Gym(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5), rs.getString(6));
+				
+			} else {
+				return null;
 			}
-			return gyms;
 			
 		} catch (Exception e) {
 			System.out.println(e);
