@@ -53,6 +53,7 @@ public class EventJoinController extends HttpServlet {
 				eventDao.increaseAttendeeById(eventId);
 			}
 			
+			response.sendRedirect(request.getContextPath()+"/events/"+eventId);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

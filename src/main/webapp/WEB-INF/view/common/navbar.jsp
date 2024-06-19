@@ -2,24 +2,43 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:choose>
-	<c:when test="${sessionScope.authUser == null }">
-					로그인하세요.
+<div class="my-2 p-2 px-5"
+	style="background-color: black; margin-bottom: 30px;">
+	<div style="display: flex; justify-content: space-between;">
+		<!-- common -->
+		<div style="display: flex; align-items: center; gap: 20px;">
+			<a href="${pageContext.servletContext.contextPath }/index"> <img
+				src="${pageContext.servletContext.contextPath }/image/main.png"
+				style="border: 1px solid black; padding: 5px; width: 64px; background-color: white; border-radius: 32px;" />
+			</a> <a href="${pageContext.servletContext.contextPath }/events"
+				class="fs-3 badge-dark">행사목록 <small>..</small></a> <a
+				href="${pageContext.servletContext.contextPath }/events"
+				class="fs-3 badge-dark">자유게시판 <small>..</small></a> <a
+				href="${pageContext.servletContext.contextPath }/events"
+				class="fs-3 badge-dark">체육시설 <small>..</small></a>
+		</div>
+		<!-- changeable -->
+		<div style="display: flex; align-items: center; gap: 20px;">
+			<div>
+				<input type="text" class="fs-5 p-2 border-rounded"
+					style="width: 300px;" />
+			</div>
+			<c:choose>
+				<c:when test="${sessionScope.authUser == null }">
+					<div>
+						<a href="${pageContext.servletContext.contextPath }/login"
+							class="fs-3 badge-dark">로그인 <small>..</small></a>
+					</div>
 				</c:when>
-	<c:otherwise>
-					로그인중입니다. 
-					${sessionScope.authUser.name } (${sessionScope.authUser.id })				
+				<c:otherwise>
+					<div>
+						<a href="${pageContext.servletContext.contextPath }/login"
+							class="fs-3 badge-dark"> ${sessionScope.authUser.name }
+							(${sessionScope.authUser.id }) </a>
+					</div>
 				</c:otherwise>
-</c:choose>
-
-<div style="text-align: right">
-<c:choose>
-	<c:when test="${sessionScope.authUser == null }">
-<a href="${pageContext.servletContext.contextPath }/login">로그인</a>
-<a href="${pageContext.servletContext.contextPath }/signup">회원가입</a>	
-	</c:when>
-	<c:otherwise>
-<a href="${pageContext.servletContext.contextPath }/logout">${authUser.name }님 로그아웃</a>
-	</c:otherwise>
-</c:choose>
+			</c:choose>
+		</div>
+	</div>
 </div>
+
