@@ -64,25 +64,60 @@ public class UserDao {
 		}
 	}
 	
-	public User findAvgBirth() throws SQLException {
+	public Double findAvgBirth() throws SQLException {
 		OracleDataSource ods = new OracleDataSource();
 		ods.setURL("jdbc:oracle:thin:@//3.34.136.108:1521/xe");
 		ods.setUser("fit_together");
 		ods.setPassword("ORACLE");
 		try (Connection conn = ods.getConnection()){
-			PreparedStatement stmt = conn.prepareStatement("select avg(birth) from users u join participants p on u.id = p.user_id;");
+			PreparedStatement stmt = conn.prepareStatement("select avg(birth) from users u join participants p on u.id = p.user_id");
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) {
-				return new User(rs.getString(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5), rs.getString(6), rs.getString(7));
+				return rs.getDouble(1);
 			} else {
 				return null;
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 			return null;
-		}	
+		}
+		
 		
 	}
+	
+	public double[] findGenderRatio() throws SQLException {
+        OracleDataSource ods = new OracleDataSource();
+        ods.setURL("jdbc:oracle:thin:@//3.34.136.108:1521/xe");
+        ods.setUser("fit_together");
+        ods.setPassword("ORACLE");
+        
+        try (Connection conn = ods.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(
+                "SELECT " +
+                "    (COUNT(CASE WHEN u.gender = '남' THEN 1 END) / COUNT(*)) AS male_ratio, " +
+                "    (COUNT(CASE WHEN u.gender = '여' THEN 1 END) / COUNT(*)) AS female_ratio " +
+                "FROM " +
+                "    users u " +
+                "    JOIN participants p ON u.id = p.user_id"
+            );
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                double maleRatio = rs.getDouble("male_ratio");
+                double femaleRatio = rs.getDouble("female_ratio");
+                // 여기서 필요에 따라 로직 추가
+                // 예를 들어, DTO 객체를 만들어 결과를 저장할 수 있음
+                return new double[] { maleRatio, femaleRatio }; // 예시로 반환되는 수치를 더해서 반환
+            } else {
+                return null; // 데이터가 없을 경우 null 반환
+            }
+        } catch (Exception e) {
+        	e.printStackTrace();
+        	return null;
+            
+        }
+		
+    }
 	
 	}

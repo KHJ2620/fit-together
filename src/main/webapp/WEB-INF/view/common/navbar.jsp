@@ -22,8 +22,10 @@
 		<!-- changeable -->
 		<div style="display: flex; align-items: center; gap: 20px;">
 			<div>
-				<input type="text" class="fs-5 p-2 border-rounded"
-					style="width: 300px;" />
+				<form action="${pageContext.servletContext.contextPath}/search" method="get">
+					<input type="text" name="q" class="fs-5 p-2 border-rounded"
+						style="width: 300px;" placeholder="검색어를 입력하세요" />
+				</form>
 			</div>
 			<c:choose>
 				<c:when test="${sessionScope.authUser == null }">

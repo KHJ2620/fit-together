@@ -21,8 +21,8 @@
 	<div class="conatiner text-center" style="margin-top : 100px">
 		<h1 style="font-weight: bold">핏투게더</h1>
 		<div>
-			<form>
-				<input type="text" class="p-3 fs-3 w-50 border-rounded"  />
+			<form action="${pageContext.servletContext.contextPath}/search" method="get">
+				<input type="text" name="q" class="p-3 fs-3 w-50 border-rounded"  />
 			</form>
 		</div>
 		<div class="my-3">

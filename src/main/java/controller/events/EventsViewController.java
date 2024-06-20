@@ -41,6 +41,16 @@ public class EventsViewController extends HttpServlet {
 			ParticipantDao participantDao = new ParticipantDao();
 			List<Participant> participants = participantDao.findByEventId(id);
 			
+			
+			Double avgBirth = null;
+			double[] genderRatio = null;
+			
+			avgBirth = userDao.findAvgBirth();
+			genderRatio = userDao.findGenderRatio();
+			request.setAttribute("avgBirth", avgBirth);
+			request.setAttribute("genderRatio", genderRatio);
+			
+			
 			// 현재 로그인하고 있는 사용자가 이 이벤트 참가중인지 확인하려면
 			// 이벤트에 참가중인 정보 가지고 와서
 			List<String> userIds = new ArrayList<>();
@@ -71,7 +81,7 @@ public class EventsViewController extends HttpServlet {
 			}
 			
 			
-			request.setAttribute("setBirth", userDao.findAvgBirth());
+			
 			
 			
 
