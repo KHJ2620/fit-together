@@ -55,6 +55,10 @@
 		<h3 class="my-2">참가자들(${fn:length(p) })| 전체댓글</h3>
 		<div>
 			<ul style="list-style: none">
+			<li><c:forEach items="${setBirth }" var="one">
+				${one.avg(birth)}
+			</c:forEach>
+			</li>
 				<li><c:forEach items="${p }" var="one">
 						<c:choose>
 							<c:when test="${one.userId == e.hostId }">

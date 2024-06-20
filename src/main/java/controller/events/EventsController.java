@@ -47,6 +47,7 @@ public class EventsController extends HttpServlet {
 			}
 			
 			request.setAttribute("events", detailList);
+			request.setAttribute("tagCounts", eventDao.countGroupByTag());
 			
 			request.getRequestDispatcher("/WEB-INF/view/events/list.jsp").forward(request, response);
 			

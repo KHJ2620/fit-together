@@ -11,10 +11,12 @@
 				src="${pageContext.servletContext.contextPath }/image/main.png"
 				style="border: 1px solid black; padding: 5px; width: 64px; background-color: white; border-radius: 32px;" />
 			</a> <a href="${pageContext.servletContext.contextPath }/events"
-				class="fs-3 badge-dark">행사목록 <small>..</small></a> <a
-				href="${pageContext.servletContext.contextPath }/events"
-				class="fs-3 badge-dark">자유게시판 <small>..</small></a> <a
-				href="${pageContext.servletContext.contextPath }/events"
+				class="fs-3 badge-dark">행사목록 <small>..</small></a>
+				<a href="${pageContext.servletContext.contextPath }/events/design"
+				class="fs-3 badge-dark">행사개최 <small>..</small></a> 
+				<a href="${pageContext.servletContext.contextPath }/events"
+				class="fs-3 badge-dark">자유게시판 <small>..</small></a> 
+				<a href="${pageContext.servletContext.contextPath }/events"
 				class="fs-3 badge-dark">체육시설 <small>..</small></a>
 		</div>
 		<!-- changeable -->
@@ -28,13 +30,15 @@
 					<div>
 						<a href="${pageContext.servletContext.contextPath }/login"
 							class="fs-3 badge-dark">로그인 <small>..</small></a>
+						<a href="${pageContext.servletContext.contextPath }/signup"
+							class="fs-3 badge-dark">회원가입 <small>..</small></a>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div>
-						<a href="${pageContext.servletContext.contextPath }/login"
+						<a href="${pageContext.servletContext.contextPath }/logout"
 							class="fs-3 badge-dark"> ${sessionScope.authUser.name }
-							(${sessionScope.authUser.id }) </a>
+							님 로그아웃 </a>
 					</div>
 				</c:otherwise>
 			</c:choose>

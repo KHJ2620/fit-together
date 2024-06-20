@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import model.vo.User;
 import oracle.jdbc.datasource.impl.OracleDataSource;
@@ -62,5 +63,26 @@ public class UserDao {
 			return null;
 		}
 	}
+	
+	public User findAvgBirth() throws SQLException {
+		OracleDataSource ods = new OracleDataSource();
+		ods.setURL("jdbc:oracle:thin:@//3.34.136.108:1521/xe");
+		ods.setUser("fit_together");
+		ods.setPassword("ORACLE");
+		try (Connection conn = ods.getConnection()){
+			PreparedStatement stmt = conn.prepareStatement("select avg(birth) from users u join participants p on u.id = p.user_id;");
+			ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				return new User(rs.getString(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5), rs.getString(6), rs.getString(7));
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}	
 		
+	}
+	
 	}

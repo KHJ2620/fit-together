@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.dao.EventDao;
 import model.dao.GymDao;
 import model.dao.ParticipantDao;
+import model.dao.UserDao;
 import model.vo.Event;
 import model.vo.Participant;
 import model.vo.User;
@@ -31,6 +32,7 @@ public class EventsViewController extends HttpServlet {
 			int id = Integer.parseInt(uri.substring(uri.lastIndexOf("/") + 1));
 			// System.out.println(id);
 			EventDao eventDao = new EventDao();
+			UserDao userDao = new UserDao();
 			Event event = eventDao.findById(id);
 			request.setAttribute("e", event);
 			GymDao gymDao = new GymDao();
@@ -69,7 +71,7 @@ public class EventsViewController extends HttpServlet {
 			}
 			
 			
-			
+			request.setAttribute("setBirth", userDao.findAvgBirth());
 			
 			
 

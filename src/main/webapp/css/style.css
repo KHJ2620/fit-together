@@ -14,6 +14,9 @@ a {
 	text-decoration: none;
 }
 
+input:focus {
+	outline: none;
+}
 button:hover {
 	background-color: #ddd;
 	cursor: pointer;
@@ -108,7 +111,7 @@ button:active {
 	border-radius: 4px;
 }
 .badge-dark {
-	background-color:  grey;
+	background-color:  #333333;
 	color: white;
 	padding : 4px 8px;
 	border-radius: 4px;
