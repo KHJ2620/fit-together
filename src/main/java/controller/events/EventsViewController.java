@@ -16,6 +16,7 @@ import model.dao.UserDao;
 import model.vo.Event;
 import model.vo.Participant;
 import model.vo.User;
+import model.vo.complex.ParticipantWithUserDetail;
 
 // @WebServlet("/events/view")
 @WebServlet("/events/*")
@@ -39,7 +40,6 @@ public class EventsViewController extends HttpServlet {
 			request.setAttribute("g", gymDao.findById(event.getId()));
 			
 			ParticipantDao participantDao = new ParticipantDao();
-			List<Participant> participants = participantDao.findByEventId(id);
 			
 			
 			Double avgBirth = null;
@@ -53,9 +53,11 @@ public class EventsViewController extends HttpServlet {
 			
 			// 현재 로그인하고 있는 사용자가 이 이벤트 참가중인지 확인하려면
 			// 이벤트에 참가중인 정보 가지고 와서
+			List<ParticipantWithUserDetail> participants = participantDao.findByEventIdWithUserDetail(id);
+			
 			List<String> userIds = new ArrayList<>();
-			for (Participant one : participants) {	// 반복문돌면서
-			userIds.add(one.getUserId());	// 참가자 아이디만 추출해서 List에 모으고
+			for (ParticipantWithUserDetail one : participants) {	// 반복문돌면서
+				userIds.add(one.getParticipant().getUserId());	// 참가자 아이디만 추출해서 List에 모으고
 			}
 			// 로그인하고 있는 사용자 정보, 세션에서 얻어서
 			User authUser = (User)request.getSession().getAttribute("authUser");

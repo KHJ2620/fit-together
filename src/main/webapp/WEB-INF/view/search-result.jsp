@@ -26,6 +26,9 @@
 			<c:forEach items="${foundEvents }" var="one">
 				<li>${one.title }  - ${one.description }</li>
 			</c:forEach>
+			<c:forEach items="${foundFeeds }" var="one">
+				<li>${one.title }  - ${one.body } - ${one.category }</li>
+			</c:forEach>
 		
 		</ul>
 		

@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.dao.EventDao;
+import model.dao.FeedDao;
 
 @WebServlet("/search")
 public class SearchController extends HttpServlet {
@@ -19,8 +20,10 @@ public class SearchController extends HttpServlet {
 		} else {
 			try {
 				EventDao eventDao = new EventDao();
+				FeedDao feedDao = new FeedDao();
 				 
 				request.setAttribute("foundEvents", eventDao.findByTitleLikeOrDescriptionLike(q));
+				request.setAttribute("foundFeeds", feedDao.findByTitleLikeOrBodyLikeCategoryLike(q));
 				
 				
 				request.getRequestDispatcher("/WEB-INF/view/search-result.jsp").forward(request, response);

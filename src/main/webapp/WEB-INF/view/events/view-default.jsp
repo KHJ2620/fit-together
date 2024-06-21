@@ -60,20 +60,24 @@
         		<p> 참가자 평균 나이: ${2024 - avgBirth + 1}</p>
    			</c:if>
    			<c:if test="${genderRatio != null}">
-        		<p>남자 비율: ${genderRatio[0]}</p>
-        		<p>여자 비율: ${genderRatio[1]}</p>
+        		<p>남자 비율: ${genderRatio[0]*100}%</p>
+        		<p>여자 비율: ${genderRatio[1]*100}%</p>
     		</c:if>
 			</li>
 				<li><c:forEach items="${p }" var="one">
 						<c:choose>
-							<c:when test="${one.userId == e.hostId }">
+							<c:when test="${one.participant.userId == e.hostId }">
 								<div>
-									<span class="warning">${one.userId } (주최자)</span> -
-									${one.joinAt } 에 참가신청
+									<span class="warning">${one.participant.userId } (주최자)</span>
+									<span> ${one.user.gender } (${one.user.birth })</span>
+									 -
+									${one.participant.joinAt } 에 참가신청
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div>${one.userId } - ${one.joinAt } 에 참가신청</div>
+								<div>${one.participant.userId }-${one.participant.joinAt } 에 참가신청
+								<span> ${one.user.gender } (${one.user.birth })</span>
+								</div>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach></li>

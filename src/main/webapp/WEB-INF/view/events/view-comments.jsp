@@ -20,7 +20,9 @@
 </head>
 <body>
 	<div class="container px-1">
-		<div class="my-3">로그온 메뉴바 들어갈 자리</div>
+		<div class="my-2">
+			<%@ include file="/WEB-INF/view/common/navbar.jsp" %>
+		</div>
 		<div class="border-rounded p-2 text-center">
 			<p class="fs-3">
 				<span class="warning">${e.hostId }</span> 의 체육행사 <small>✍${e.registerAt }</small>
